@@ -5,10 +5,12 @@
 
 AABCharacterNonPlayer::AABCharacterNonPlayer()
 {
+
 }
 
 void AABCharacterNonPlayer::AttackHitCheck(AttackType AttackType)
 {
+
 }
 
 float AABCharacterNonPlayer::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -18,4 +20,12 @@ float AABCharacterNonPlayer::TakeDamage(float DamageAmount, FDamageEvent const& 
 	Stat->ApplyDamage(DamageAmount);
 
 	return 0.0f;
+}
+
+void AABCharacterNonPlayer::SetDead()
+{
+	Super::SetDead();
+
+	// 문을 여는 기능
+	Door->SetActorRelativeRotation(FQuat::MakeFromEuler(FVector(0, 0, 90)));
 }

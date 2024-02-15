@@ -80,7 +80,7 @@ protected:
 	bool CanComboInput = false;
 	bool ComboMiss = false;
 
-	void SetDead();
+	virtual void SetDead();
 
 //Stat Component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
