@@ -44,18 +44,18 @@ AABStageGimmick::AABStageGimmick()
 		Gate->SetRelativeLocation(FVector(0.0f, -80.0f, 0.0f));
 		Gate->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
 		Gates.Add(GateSocket, Gate);
-		
-		FName TriggerSocket = GateSocket;
-		UBoxComponent* GateTrigger = CreateDefaultSubobject<UBoxComponent>(TriggerSocket);
 
-		GateTrigger->SetupAttachment(Stage, TriggerSocket);
-
-		GateTrigger->SetBoxExtent(FVector(100, 100, 100));
+		FName TriggerName = *GateSocket.ToString().Append(TEXT("Trigger"));
+		UBoxComponent* GateTrigger = CreateDefaultSubobject<UBoxComponent>(TriggerName);
+		GateTrigger->SetupAttachment(Stage, GateSocket);
+		GateTrigger->SetBoxExtent(FVector(85.0f, 85.0f, 300.0f));
+		GateTrigger->SetRelativeLocation(FVector(0.0f, 0.0f, 250.0f));
+		GateTrigger->SetCollisionProfileName(TEXT("ABTrigger"));
+		GateTrigger->ComponentTags.Add(GateSocket);
+		GateTrigger->OnComponentBeginOverlap.AddDynamic(this, &AABStageGimmick::OnGateTriggerBeginOverlap);
 		
 		GateTriggers.Add(GateTrigger);
 	}
-
-
 
 }
 
