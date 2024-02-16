@@ -1,0 +1,29 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "Character/ABCharacterNonPlayer.h"
+
+AABCharacterNonPlayer::AABCharacterNonPlayer()
+{
+}
+
+void AABCharacterNonPlayer::AttackHitCheck(AttackType AttackType)
+{
+}
+
+float AABCharacterNonPlayer::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+
+	Stat->ApplyDamage(DamageAmount);
+
+	return 0.0f;
+}
+
+void AABCharacterNonPlayer::SetDead()
+{
+	Super::SetDead();
+
+	// 문을 연다
+	//Door->SetActorRelativeRotation(FQuat::MakeFromEuler(FVector(0, 0, 90)));
+}
